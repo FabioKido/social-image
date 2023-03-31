@@ -1,0 +1,18 @@
+{
+  "name": "social-image",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": ""
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "puppeteer": "^19.8.2",
+    "puppeteer-social-image": "^0.8.1"
+  }
+}
