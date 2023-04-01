@@ -12,7 +12,7 @@ exports.store = async (req, res) => {
                     "https://images.unsplash.com/photo-1557958114-3d2440207108?w=1950&q=80",
                 title
             },
-            output: "images/image.png",
+            output: "public/images/image.png",
             size
         })
 
@@ -25,5 +25,5 @@ exports.store = async (req, res) => {
 }
 
 exports.show = async (req, res) => {
-    res.send('<img src="/images/image.png" alt="">')
+    res.send('<img src="/images/image.png" alt="test" />')
 }
