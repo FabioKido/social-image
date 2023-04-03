@@ -11,7 +11,7 @@ exports.image = async (title, size) => {
   const img = await renderSocialImage({
     template: "basic",
     templateParams: templateParamsWithConfig,
-    output: "../public/images/image.png",
+    output: "public/images/image.png",
     size
   })
 
