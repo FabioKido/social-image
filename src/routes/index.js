@@ -4,6 +4,6 @@ const imageRoutes = require('./imageRoutes');
 
 const routes = Router()
 
-routes.use('/image', imageRoutes)
+routes.use('/api', imageRoutes)
 
 module.exports = routes

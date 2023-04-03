@@ -4,8 +4,8 @@ const imageController = require('../controllers/imageController');
 
 const imageRouter = Router();
 
-imageRouter.get('/new', imageController.store);
+imageRouter.get('/image', imageController.store);
 imageRouter.get('/preview', imageController.show);
-imageRouter.get('/custom', imageController.custom);
+imageRouter.post('/publish', imageController.custom);
 
 module.exports = imageRouter

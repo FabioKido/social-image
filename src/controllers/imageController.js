@@ -1,7 +1,9 @@
 const renderSocialImage = require('puppeteer-social-image')
 
 // const createImage = require('../services/image')
+const {publish} = require('../services/publish')
 
+// image
 exports.store = async (req, res) => {
 
     try {
@@ -24,10 +26,11 @@ exports.store = async (req, res) => {
             message: 'image created with success'
         });
     } catch (error) {
-        // error message
+        console.log(error)
     }
 }
 
+// preview
 exports.show = async (req, res) => {
     const wrapper = `
         <div>
@@ -38,9 +41,18 @@ exports.show = async (req, res) => {
     res.send(wrapper)
 }
 
+// publish
 exports.custom = async (req, res) => {
-    
-    
-    
-    res.status(200).send("custom")
+     
+    try {
+        const { body, styles } = req.body;
+
+        const {template} = await publish(body, styles)
+
+        res.status(200).json({
+            message: `template created with id ${template}`
+        });
+    } catch (error) {
+        console.log(error)
+    }
 }
