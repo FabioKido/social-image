@@ -1,6 +1,6 @@
 const renderSocialImage = require('puppeteer-social-image')
 
-// const createImage = require('../services/image')
+// const {image} = require('../services/image')
 const {publish} = require('../services/publish')
 
 // image
@@ -9,7 +9,7 @@ exports.store = async (req, res) => {
     try {
         const { title, size } = req.query;
 
-        //await createImage(title, size)
+        //await {image}(title, size)
 
         await renderSocialImage.default({
             template: "basic",
