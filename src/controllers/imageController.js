@@ -37,3 +37,10 @@ exports.show = async (req, res) => {
     
     res.send(wrapper)
 }
+
+exports.custom = async (req, res) => {
+    
+    
+    
+    res.status(200).send("custom")
+}
