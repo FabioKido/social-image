@@ -7,9 +7,14 @@ const {publish} = require('../services/publish')
 exports.image = async (req, res) => {
 
     try {
-        const { template, size, title, logo, imageUrl } = req.query
+        const { template, size } = req.query
 
-        const result = await image(template, size, ["title", title],["logo", logo],["imageUrl", imageUrl])
+        delete req.query.template
+        delete req.query.size
+
+        const params = Object.entries(req.query)
+
+        const result = await image(template, size, ...params)
 
         res.status(200).json({
             message: 'image created with success'
@@ -21,9 +26,16 @@ exports.image = async (req, res) => {
 
 exports.preview = async (req, res) => {
     try {
-        const { template, body, styles, size, title, name } = req.query
+        const { template, body, styles, size } = req.query
 
-        const result = await preview(template, body, styles, size, ["title", title], ["name", name])
+        delete req.query.template
+        delete req.query.body
+        delete req.query.styles
+        delete req.query.size
+
+        const params = Object.entries(req.query)
+
+        const result = await preview(template, body, styles, size, ...params)
 
         const wrapper = `
             <div>
