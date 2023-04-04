@@ -1,43 +1,34 @@
-import puppeteer from 'puppeteer';
-import renderSocialImage from 'puppeteer-social-image';
-import reducePairs from './utils/reduce-pairs';
-import { getCustomTemplates } from './utils/get-templates';
-import configureParams from './utils/configure-params';
+const {default: renderSocialImage} = require('puppeteer-social-image')
 
-let browser;
+const {reducePairs} = require('../utils/reduce-pairs')
+const {getCustomTemplates} = require('../utils/get-templates')
+const {configureParams} = require('../utils/configure-params')
 
-export default async function preview(
-  template = 'basic',
-  body,
-  styles,
-  size,
-  ...templateParamsArr
-) {
-  browser = browser || (await puppeteer.launch({}));
+exports.preview = async (template = 'basic',  body,  styles,  size,  ...templateParamsArr) => {
 
-  const templateParams = reducePairs(templateParamsArr);
-
+  const templateParams = reducePairs(templateParamsArr)
+  
   const options = {
     templateParams,
-    browser,
     preview: true,
     size,
     type: 'jpeg',
     jpegQuality: 70,
-  };
+    output: "public/images/preview.jpeg"
+  }
 
   if (body) {
-    options.templateBody = body;
-    options.templateStyles = styles;
+    options.templateBody = body
+    options.templateStyles = styles
   } else {
     const {
       customTemplates,
       isFreeTemplate,
       resolvedTemplate,
       extendedParams,
-    } = await getCustomTemplates(template);
+    } = await getCustomTemplates(template)
 
-    options.template = resolvedTemplate;
+    options.template = resolvedTemplate
 
     options.customTemplates = customTemplates;
     options.templateParams = configureParams(
@@ -46,13 +37,9 @@ export default async function preview(
     );
   }
 
-  const img = await renderSocialImage(options);
+  const img = await renderSocialImage(options)
 
   return {
-    headers: {
-      'Content-Type': 'image/jpeg',
-    },
-    statusCode: 200,
-    body: img,
-  };
+    body: img
+  }
 }

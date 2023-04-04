@@ -1,12 +1,12 @@
 const {default: renderSocialImage} = require('puppeteer-social-image')
 
-const {getCustomTemplates} = require('../utils/get-templates')
-const {configureParams} = require('../utils/configure-params');
 const {reducePairs} = require('../utils/reduce-pairs')
+const {getCustomTemplates} = require('../utils/get-templates')
+const {configureParams} = require('../utils/configure-params')
 
 exports.image = async (template = 'basic', size, ...templateParamsArr) => {
 
-  const templateParams = reducePairs(templateParamsArr);
+  const templateParams = reducePairs(templateParamsArr)
 
   const {
     customTemplates,
@@ -28,5 +28,5 @@ exports.image = async (template = 'basic', size, ...templateParamsArr) => {
   return {
     img,
     resolvedTemplate
-  };
+  }
 }
