@@ -1,2 +1,1 @@
-export default pairs =>
-  pairs.reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {});
+exports.reducePairs = pairs => pairs.reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {});

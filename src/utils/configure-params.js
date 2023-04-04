@@ -1,6 +1,4 @@
-// imageUrl: "https://images.unsplash.com/photo-1557958114-3d2440207108?w=1950&q=80",
-
-exports.configureParams = (templateParams, isFreeTemplate = true) => {
+exports.configureParams = (templateParams, isFreeTemplate) => {
     const definedImage =
     templateParams.unsplashId ||
     templateParams.unsplashKeywords ||

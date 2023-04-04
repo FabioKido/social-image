@@ -7,9 +7,9 @@ const {publish} = require('../services/publish')
 exports.store = async (req, res) => {
 
     try {
-        const { title, size } = req.query;
+        const { template, size, title, logo, imageUrl } = req.query;
 
-        const result = await image(title, size)
+        const result = await image(template, size, ["title", title],["logo", logo],["imageUrl", imageUrl])
 
         res.status(200).json({
             message: 'image created with success'

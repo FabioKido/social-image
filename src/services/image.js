@@ -2,25 +2,27 @@ const {default: renderSocialImage} = require('puppeteer-social-image')
 
 const {getCustomTemplates} = require('../utils/get-templates')
 const {configureParams} = require('../utils/configure-params');
+const {reducePairs} = require('../utils/reduce-pairs')
 
-// Sizes: `facebook`, `twitter`, `ig-landscape`, `ig-square`, `ig-portrait`, `ig-story`, `pinterest` or any `WIDTHxHEIGHT` value in pixels.
+exports.image = async (template = 'basic', size, ...templateParamsArr) => {
 
-exports.image = async (title, size) => {
+  const templateParams = reducePairs(templateParamsArr);
 
   const {
     customTemplates,
     isFreeTemplate,
     resolvedTemplate,
     extendedParams,
-  } = await getCustomTemplates('article')
+  } = await getCustomTemplates(template)
 
-  const templateParamsWithConfig = configureParams({ title });
-
+  const templateParamsWithConfig = configureParams({ ...templateParams, ...extendedParams }, isFreeTemplate)
+  
   const img = await renderSocialImage({
-    template: "basic",
+    template: resolvedTemplate,
     templateParams: templateParamsWithConfig,
-    output: "public/images/image.png",
-    size
+    customTemplates,
+    size,
+    output: "public/images/image.png"
   })
 
   return {
