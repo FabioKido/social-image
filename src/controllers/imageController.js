@@ -3,8 +3,7 @@ const renderSocialImage = require('puppeteer-social-image')
 const {image} = require('../services/image')
 const {publish} = require('../services/publish')
 
-// image
-exports.store = async (req, res) => {
+exports.image = async (req, res) => {
 
     try {
         const { template, size, title, logo, imageUrl } = req.query;
@@ -19,8 +18,7 @@ exports.store = async (req, res) => {
     }
 }
 
-// preview
-exports.show = async (req, res) => {
+exports.preview = async (req, res) => {
     const wrapper = `
         <div>
             <img style="height: 480px; width: 300px; object-fit: cover" src="/images/image.png" alt="test" />
@@ -30,8 +28,7 @@ exports.show = async (req, res) => {
     res.send(wrapper)
 }
 
-// publish
-exports.custom = async (req, res) => {
+exports.publish = async (req, res) => {
      
     try {
         const { body, styles } = req.body;
