@@ -11,7 +11,7 @@ exports.getCustomTemplates = async template => {
   // Load template from DB if it's not already in cache
   if (!isFreeTemplate && typeof customTemplates[template] === 'undefined') {
     const snapshot = await db.collection('templates').doc(template).get();
-    console.log(snapshot)
+    
     const { body, styles, extendsTemplate, params = {} } = snapshot.data();
 
     if (extendsTemplate) {

@@ -57,7 +57,7 @@ exports.publish = async (req, res) => {
         const {template} = await publish(body, styles)
 
         res.status(200).json({
-            message: `template created with id ${template}`
+            message: `Use template ID ${template}`
         });
     } catch (error) {
         console.log(error)
