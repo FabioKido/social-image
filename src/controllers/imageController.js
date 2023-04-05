@@ -37,10 +37,16 @@ exports.preview = async (req, res) => {
         const params = Object.entries(req.query)
 
         const {img} = await preview(template, body, styles, size, ...params)
-    
+
+        function arrayBufferToBase64(buffer) {     
+            return Buffer.from(buffer, 'binary').toString('base64')
+        };
+
+        const b64 = arrayBufferToBase64(img)
+        
         res.set('Content-Type', 'image/jpeg')
         res.status(200).json({
-            data: img
+            data: b64
         })
     } catch (error) {
         console.log(error)
