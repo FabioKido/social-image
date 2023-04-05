@@ -13,8 +13,7 @@ exports.preview = async (template = 'basic',  body,  styles,  size,  ...template
     preview: true,
     size,
     type: 'jpeg',
-    jpegQuality: 70,
-    output: "public/images/preview.jpeg"
+    jpegQuality: 70
   }
 
   if (body) {
@@ -40,6 +39,6 @@ exports.preview = async (template = 'basic',  body,  styles,  size,  ...template
   const img = await renderSocialImage(options)
 
   return {
-    body: img
+    img
   }
 }

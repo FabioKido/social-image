@@ -22,11 +22,11 @@ exports.image = async (template = 'basic', size, ...templateParamsArr) => {
     templateParams: templateParamsWithConfig,
     customTemplates,
     size,
-    output: "public/images/image.png"
+    type: 'jpeg',
+    jpegQuality: 80
   })
 
   return {
-    img,
-    resolvedTemplate
+    img
   }
 }

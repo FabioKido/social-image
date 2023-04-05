@@ -14,8 +14,9 @@ exports.image = async (req, res) => {
 
         const params = Object.entries(req.query)
 
-        const result = await image(template, size, ...params)
+        await image(template, size, ...params)
 
+        res.set('Content-Type', 'image/jpeg')
         res.status(200).json({
             message: 'image created with success'
         })
@@ -35,15 +36,12 @@ exports.preview = async (req, res) => {
 
         const params = Object.entries(req.query)
 
-        const result = await preview(template, body, styles, size, ...params)
-
-        const wrapper = `
-            <div>
-                <img src="/images/preview.jpeg" alt="preview" />
-            </div>
-        `
+        const {img} = await preview(template, body, styles, size, ...params)
     
-        res.status(200).send(wrapper)
+        res.set('Content-Type', 'image/jpeg')
+        res.status(200).json({
+            data: img
+        })
     } catch (error) {
         console.log(error)
     }
